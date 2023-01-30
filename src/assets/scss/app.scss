@@ -7,12 +7,23 @@
 @import "components/card/event-card";
 @import "components/card/ticket-card";
 @import "components/form/button";
+@import "components/form/checkbox";
+@import "components/form/date";
+@import "components/form/image-upload";
 @import "components/form/input";
+@import "components/form/qr-code-upload";
+@import "components/form/select";
+@import "components/form/textarea";
 @import "components/list/event-list";
+@import "components/list/invite-list";
+@import "components/list/purchases-list";
 
 @import "layouts/navigation";
 
 @import "pages/auth/login";
 @import "pages/auth/register";
+@import "pages/auth/forgotten-password";
+@import "pages/auth/reset-password";
 @import "pages/event/create-event";
 @import "pages/event/edit-event";
+@import "pages/not-found";

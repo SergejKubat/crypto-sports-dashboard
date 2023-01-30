@@ -1,0 +1,62 @@
+.login {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 5rem 0;
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    & .logo {
+        display: flex;
+        align-items: center;
+
+        & .title {
+            margin-left: 1.5rem;
+            font-size: 6.4rem;
+            font-style: italic;
+            color: #ff8d5c;
+            text-shadow: 1px 1px 0px #ff774d, 2px 2px 0px #b56959;
+        }
+    }
+
+    &-container {
+        width: 50rem;
+        margin: 5rem 0;
+        padding: 3rem 4rem;
+        background-color: $color-white;
+        border-radius: 0.5rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px;
+
+        @include respond(mobileL) {
+            padding: 3rem 2rem;
+        }
+
+        & a {
+            font-weight: 500;
+            color: $color-indigo;
+            transition: color 0.3s ease-in-out;
+
+            &:hover {
+                color: darken($color-indigo, 10%);
+            }
+        }
+    }
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+
+        & button {
+            align-self: flex-end;
+        }
+    }
+
+    &-forgot {
+        font-size: 1.4rem;
+        text-align: end;
+    }
+}
