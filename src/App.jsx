@@ -10,6 +10,7 @@ import ResetPasswordPage from "./pages/Auth/ResetPassword";
 import DashboardPage from "./pages/Dashboard";
 import NotFoundPage from "./pages/NotFound";
 
+import Layout from "./components/Layout/Layout";
 import ScrollToTop from "./components/Layout/ScrollToTop";
 
 import { UserContext } from "./context/UserContext";
@@ -50,7 +51,9 @@ const App = () => {
                         <Route path="/register/:invitationCode" element={user ? <Navigate to="/dashboard" /> : <RegisterPage />} />
                         <Route path="/forgotten-password" element={user ? <Navigate to="/dashboard" /> : <ForgottenPasswordPage />} />
                         <Route path="/reset-password/:code" element={user ? <Navigate to="/dashboard" /> : <ResetPasswordPage />} />
-                        <Route path="/dashboard" element={user ? <DashboardPage /> : <Navigate to="/" />} />
+                        <Route element={user ? <Layout /> : <Navigate to="/" />}>
+                            <Route path="/dashboard" element={<DashboardPage />} />
+                        </Route>
                         <Route path="*" element={<NotFoundPage />} />
                     </Routes>
                 </WalletContext.Provider>
