@@ -6,7 +6,8 @@
         color: #262626;
     }
 
-    & input {
+    & input,
+    textarea {
         display: block;
         width: 100%;
         padding: 0.6rem 1rem;
@@ -14,7 +15,7 @@
         font-size: 1.4rem;
         font-weight: 400;
         color: #262626;
-        background-color: transparent;
+        background-color: $color-white;
         border: 1px solid #999999;
         box-shadow: none;
         border-radius: 0.5rem;
@@ -23,6 +24,10 @@
         &:focus {
             border-color: $color-indigo;
         }
+    }
+
+    & textarea {
+        resize: none;
     }
 
     &-error {

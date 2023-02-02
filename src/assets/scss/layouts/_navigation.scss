@@ -22,6 +22,11 @@
     }
 
     &-list {
+        & .active {
+            display: block;
+            background-color: darken(#121d33, 3%);
+        }
+
         &-item {
             display: flex;
             align-items: center;

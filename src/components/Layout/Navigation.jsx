@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineHome, AiOutlineBarChart, AiOutlineLogout } from "react-icons/ai";
 import { BsCalendarEvent, BsEnvelope } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
@@ -39,38 +39,38 @@ const Navigation = () => {
                 </h1>
             </div>
             <ul className="navigation-list">
-                <Link to="/dashboard">
+                <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "active" : "")}>
                     <li className="navigation-list-item">
                         <AiOutlineHome />
                         <span>Home</span>
                     </li>
-                </Link>
-                <Link to="/events">
+                </NavLink>
+                <NavLink to="/events" className={({ isActive }) => (isActive ? "active" : "")}>
                     <li className="navigation-list-item">
                         <BsCalendarEvent />
                         <span>Events</span>
                     </li>
-                </Link>
+                </NavLink>
                 {user.role === "admin" ? (
                     <React.Fragment>
-                        <Link to="/users">
+                        <NavLink to="/users" className={({ isActive }) => (isActive ? "active" : "")}>
                             <li className="navigation-list-item">
                                 <FaUserCircle />
                                 <span>Users</span>
                             </li>
-                        </Link>
-                        <Link to="/invitations">
+                        </NavLink>
+                        <NavLink to="/invitations" className={({ isActive }) => (isActive ? "active" : "")}>
                             <li className="navigation-list-item">
                                 <BsEnvelope />
                                 <span>Invitations</span>
                             </li>
-                        </Link>
-                        <Link to="/charts">
+                        </NavLink>
+                        <NavLink to="/charts" className={({ isActive }) => (isActive ? "active" : "")}>
                             <li className="navigation-list-item">
                                 <AiOutlineBarChart />
                                 <span>Charts</span>
                             </li>
-                        </Link>
+                        </NavLink>
                     </React.Fragment>
                 ) : null}
             </ul>
