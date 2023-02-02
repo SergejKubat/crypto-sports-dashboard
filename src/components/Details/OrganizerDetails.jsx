@@ -21,8 +21,6 @@ const OrganizerDetails = (props) => {
         e.preventDefault();
 
         setTouched(true);
-
-        console.log("update");
     };
 
     return (
