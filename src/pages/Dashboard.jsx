@@ -54,7 +54,7 @@ const DashboardPage = () => {
             ) : (
                 <Button text="Connect Wallet" onClick={() => setIsModalOpened(true)} />
             )}
-            {user.role === "organizer" && organizer ? <OrganizerDetails organizer={organizer} /> : null}
+            {user.role === "organizer" && organizer ? <OrganizerDetails organizer={organizer} setOrganizer={setOrganizer} /> : null}
             <ConnectWalletModal show={isModalOpened} onHide={() => setIsModalOpened(false)} />
         </div>
     );

@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 
+import axios from "axios";
+import validator from "validator";
 import { Row, Col } from "react-bootstrap";
 
 import Input from "../Form/Input";
 import Textarea from "../Form/Textarea";
+import ImageUpload from "../Form/ImageUpload";
 import Button from "../Form/Button";
+
+import { uploadFile } from "../../utils/file";
 
 const OrganizerDetails = (props) => {
     const [name, setName] = useState(props.organizer.name);
     const [description, setDescription] = useState(props.organizer.description);
-    //const [image, setImage] = useState(props.organizer.image);
+    const [image, setImage] = useState(props.organizer.image);
     const [website, setWebsite] = useState(props.organizer.website);
     const [linkedin, setLinkedin] = useState(props.organizer.socialMedia.linkedin);
     const [twitter, setTwitter] = useState(props.organizer.socialMedia.twitter);
@@ -17,10 +22,62 @@ const OrganizerDetails = (props) => {
     const [youtube, setYoutube] = useState(props.organizer.socialMedia.youtube);
     const [touched, setTouched] = useState(false);
 
-    const updateOrganizer = (e) => {
+    const validate = async () => {
+        if (name.length < 4) return false;
+
+        if (!image) return false;
+
+        if (!validator.isURL(website)) return false;
+
+        if (linkedin && !validator.isURL(linkedin)) return false;
+
+        if (twitter && !validator.isURL(twitter)) return false;
+
+        if (instagram && !validator.isURL(instagram)) return false;
+
+        if (youtube && !validator.isURL(youtube)) return false;
+
+        return true;
+    };
+
+    const updateOrganizer = async (e) => {
         e.preventDefault();
 
         setTouched(true);
+
+        if (!validate()) return;
+
+        const imageURL = await uploadFile(image);
+
+        const data = {
+            name: name,
+            image: imageURL,
+            description: description,
+            website: website,
+            socialMedia: {
+                linkedin: linkedin,
+                twitter: twitter,
+                instagram: instagram,
+                youtube: youtube
+            }
+        };
+
+        axios
+            .put(`${import.meta.env.VITE_API_URL}/organizers/${props.organizer._id}`, data, { withCredentials: true })
+            .then((response) => {
+                props.setOrganizer(response.data);
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+            });
+    };
+
+    const validateSocialMedia = (value) => {
+        if (value) {
+            return validator.isURL(value);
+        } else {
+            return true;
+        }
     };
 
     return (
@@ -48,6 +105,7 @@ const OrganizerDetails = (props) => {
                             required={true}
                             maxLength={500}
                         />
+                        <ImageUpload image={image} setImage={setImage} width="1200" height="800" />
                     </Col>
                     <Col xs={12} md={6}>
                         <Input
@@ -58,7 +116,7 @@ const OrganizerDetails = (props) => {
                             touched={touched}
                             required={true}
                             errorMessage="URL address is not valid."
-                            validateCb={(value) => value && value.length > 3}
+                            validateCb={(value) => value && validator.isURL(value)}
                         />
                         <Input
                             name="linkedin"
@@ -68,7 +126,7 @@ const OrganizerDetails = (props) => {
                             touched={touched}
                             required={true}
                             errorMessage="URL address is not valid."
-                            validateCb={(value) => value && value.length > 3}
+                            validateCb={validateSocialMedia}
                         />
                         <Input
                             name="twitter"
@@ -78,7 +136,7 @@ const OrganizerDetails = (props) => {
                             touched={touched}
                             required={true}
                             errorMessage="URL address is not valid."
-                            validateCb={(value) => value && value.length > 3}
+                            validateCb={validateSocialMedia}
                         />
                         <Input
                             name="instagram"
@@ -88,7 +146,7 @@ const OrganizerDetails = (props) => {
                             touched={touched}
                             required={true}
                             errorMessage="URL address is not valid."
-                            validateCb={(value) => value && value.length > 3}
+                            validateCb={validateSocialMedia}
                         />
                         <Input
                             name="youtube"
@@ -98,7 +156,7 @@ const OrganizerDetails = (props) => {
                             touched={touched}
                             required={true}
                             errorMessage="URL address is not valid."
-                            validateCb={(value) => value && value.length > 3}
+                            validateCb={validateSocialMedia}
                         />
                     </Col>
                 </Row>
