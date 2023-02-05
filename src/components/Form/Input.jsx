@@ -38,7 +38,7 @@ const Input = (props) => {
     }, [touched]);
 
     return (
-        <div className={`input${props.className ? ` ${props.className}` : ""}`}>
+        <div className={`input${props.className ? ` ${props.className}` : ""}`} style={props.style}>
             {props.label ? (
                 <div className="input-header">
                     <label className="label">{props.label}</label>

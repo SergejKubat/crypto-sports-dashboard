@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import EventCard from "../../components/Card/EventCard";
+import Button from "../../components/Form/Button";
 
 import { UserContext } from "../../context/UserContext";
 
 const EventListPage = () => {
     const [events, setEvents] = useState([]);
+
+    const navigate = useNavigate();
 
     const { user } = useContext(UserContext);
 
@@ -34,6 +38,7 @@ const EventListPage = () => {
                 Voluptates voluptatum quis quisquam inventore! Ipsum itaque omnis vel placeat cum incidunt fugit nobis accusamus, ducimus
                 quasi ut laborum fuga officia quo, nisi, eos qui saepe? Adipisci, animi alias enim aspernatur laborum iusto!
             </p>
+            <Button text="Create New Event" onClick={() => navigate("/events/create")} />
             <div className="list">
                 <ul className="list-content">
                     {events.map((event) => (

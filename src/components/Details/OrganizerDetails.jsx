@@ -40,7 +40,7 @@ const OrganizerDetails = (props) => {
         return true;
     };
 
-    const updateOrganizer = async (e) => {
+    const saveOrganizer = async (e) => {
         e.preventDefault();
 
         setTouched(true);
@@ -83,7 +83,7 @@ const OrganizerDetails = (props) => {
     return (
         <div>
             <h2 className="mt-5 mb-4">Organizer Details</h2>
-            <form autoComplete="off" noValidate className="login-form" onSubmit={updateOrganizer}>
+            <form autoComplete="off" noValidate className="login-form" onSubmit={saveOrganizer}>
                 <Row style={{ "--bs-gutter-x": "3rem" }}>
                     <Col xs={12} md={6}>
                         <Input

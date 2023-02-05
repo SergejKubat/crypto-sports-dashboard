@@ -1,0 +1,19 @@
+.ticket-card {
+    margin-bottom: 3rem;
+
+    &-header {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+
+        & .name {
+            font-size: 2rem;
+        }
+    }
+
+    &-details {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 3.6rem;
+    }
+}

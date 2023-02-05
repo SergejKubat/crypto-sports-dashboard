@@ -56,11 +56,11 @@ const ImageUpload = (props) => {
     };
 
     useEffect(() => {
-        props.setImage(image);
+        //props.setImage(image);
     }, [image]);
 
     return (
-        <div className="image-upload">
+        <div className="image-upload" style={props.style}>
             <div className="input-header">
                 <label className="label">Image</label>
             </div>
