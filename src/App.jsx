@@ -8,6 +8,7 @@ import RegisterPage from "./pages/Auth/Register";
 import ForgottenPasswordPage from "./pages/Auth/ForgottenPassword";
 import ResetPasswordPage from "./pages/Auth/ResetPassword";
 import DashboardPage from "./pages/Dashboard";
+import EventListPage from "./pages/Event/EventList";
 import NotFoundPage from "./pages/NotFound";
 
 import Layout from "./components/Layout/Layout";
@@ -53,6 +54,7 @@ const App = () => {
                         <Route path="/reset-password/:code" element={user ? <Navigate to="/dashboard" /> : <ResetPasswordPage />} />
                         <Route element={user ? <Layout /> : <Navigate to="/" />}>
                             <Route path="/dashboard" element={<DashboardPage />} />
+                            <Route path="/events" element={<EventListPage />} />
                         </Route>
                         <Route path="*" element={<NotFoundPage />} />
                     </Routes>

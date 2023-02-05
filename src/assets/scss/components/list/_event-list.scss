@@ -1,0 +1,25 @@
+.list {
+    padding: 3rem 0;
+
+    &-heading {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        font-weight: 600;
+        color: rgb(38, 38, 38);
+
+        @include respond(tablet) {
+            text-align: center;
+        }
+    }
+
+    &-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        list-style-type: none;
+
+        @include respond(tablet) {
+            justify-content: center;
+        }
+    }
+}
