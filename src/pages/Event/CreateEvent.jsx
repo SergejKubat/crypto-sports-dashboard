@@ -1,4 +1,4 @@
-import React, { useState /*, useContext*/ } from "react";
+import React, { useState } from "react";
 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -187,8 +187,9 @@ const CreateEventPage = () => {
 
             navigate("/events");
         } catch (error) {
-            console.log(error);
             setLocked(false);
+
+            console.log(error);
         }
     };
 
