@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const Checkbox = (props) => {
-    const [isChecked, setIsChecked] = useState(props.defaultChecked || "");
+    const [isChecked, setIsChecked] = useState(props.defaultChecked);
 
     const onChange = (e) => {
         setIsChecked(e.target.checked);
@@ -28,21 +28,6 @@ const Checkbox = (props) => {
             <span className="checkmark"></span>
         </label>
     );
-
-    /*return (
-        <label className="checkbox" style={props.style}>
-            {props.label}
-            <input
-                name={props.name}
-                type="checkbox"
-                defaultChecked={isChecked}
-                value={isChecked}
-                disabled={props.disabled}
-                onChange={onChange}
-            />
-            <span className={`checkmark${isChecked ? " checked" : ""}`}></span>
-        </label>
-    );*/
 };
 
 export default Checkbox;

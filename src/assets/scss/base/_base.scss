@@ -38,3 +38,9 @@ a {
 ul {
     padding-left: 0;
 }
+
+.locked {
+    opacity: 0.5;
+    user-select: none;
+    pointer-events: none;
+}

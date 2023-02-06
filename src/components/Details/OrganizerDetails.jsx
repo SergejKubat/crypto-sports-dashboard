@@ -22,7 +22,7 @@ const OrganizerDetails = (props) => {
     const [youtube, setYoutube] = useState(props.organizer.socialMedia.youtube);
     const [touched, setTouched] = useState(false);
 
-    const validate = async () => {
+    const validate = () => {
         if (name.length < 4) return false;
 
         if (!image) return false;

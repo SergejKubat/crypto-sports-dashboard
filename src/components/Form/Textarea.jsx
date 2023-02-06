@@ -38,7 +38,7 @@ const Textarea = (props) => {
     }, [touched]);
 
     return (
-        <div className="input">
+        <div className="input" style={props.style}>
             {props.label ? (
                 <div className="input-header">
                     <label className="label">{props.label}</label>
@@ -52,7 +52,7 @@ const Textarea = (props) => {
                 placeholder={props.placeholder}
                 rows={props.rows || 5}
                 className={props.className}
-                style={props.style}
+                style={props.inputStyle}
                 onChange={onChange}
                 onBlur={() => setTouched(true)}
             />

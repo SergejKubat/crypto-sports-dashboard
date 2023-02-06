@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { BsImageFill } from "react-icons/bs";
 
-import { ACCEPTED_MIME_TYPES, TWO_MEGABYTES } from "../../data/constants";
+import { IMAGE_ACCEPTED_MIME_TYPES, TWO_MEGABYTES } from "../../data/constants";
 
 const ImageUpload = (props) => {
     const [image, setImage] = useState(props.image);
@@ -18,7 +18,7 @@ const ImageUpload = (props) => {
             return false;
         }
 
-        if (!ACCEPTED_MIME_TYPES.includes(file.type)) {
+        if (!IMAGE_ACCEPTED_MIME_TYPES.includes(file.type)) {
             setError("You must provide accepted image extension.");
             return false;
         }
@@ -56,7 +56,7 @@ const ImageUpload = (props) => {
     };
 
     useEffect(() => {
-        //props.setImage(image);
+        props.setImage(image);
     }, [image]);
 
     return (
@@ -64,13 +64,7 @@ const ImageUpload = (props) => {
             <div className="input-header">
                 <label className="label">Image</label>
             </div>
-            <input
-                type="file"
-                accept={["image/jpeg", "image/png", "image/gif", "image/webp"]}
-                ref={filePicker}
-                className="image-upload-input"
-                onChange={onFileChange}
-            />
+            <input type="file" accept={IMAGE_ACCEPTED_MIME_TYPES} ref={filePicker} className="image-upload-input" onChange={onFileChange} />
             {image ? (
                 <React.Fragment>
                     <img src={image} alt="Upload Image" className="image-upload-preview" />
