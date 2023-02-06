@@ -17,7 +17,7 @@ const EventListPage = () => {
 
     const getEvents = () => {
         axios
-            .get(`${import.meta.env.VITE_API_URL}/events${user.role === "organizer" ? `?user=${user._id}` : ""}`)
+            .get(`${import.meta.env.VITE_API_URL}/events${user.role === "organizer" ? `?user=${user._id}` : ""}`, { withCredentials: true })
             .then((response) => {
                 setEvents(response.data);
             })
