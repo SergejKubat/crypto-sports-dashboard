@@ -17,14 +17,7 @@ const Checkbox = (props) => {
 
     return (
         <label className="checkbox">
-            <input
-                type="checkbox"
-                name={props.name}
-                defaultChecked={isChecked}
-                value={isChecked}
-                disabled={props.disabled}
-                onChange={onChange}
-            />
+            <input type="checkbox" name={props.name} checked={isChecked} value={isChecked} disabled={props.disabled} onChange={onChange} />
             <span className="checkmark"></span>
         </label>
     );

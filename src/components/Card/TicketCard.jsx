@@ -1,4 +1,4 @@
-import React, { useState /*, useEffect, useContext*/ } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Col, Row } from "react-bootstrap";
 
@@ -9,12 +9,18 @@ import Input from "../Form/Input";
 import QRCodeUpload from "../Form/QRCodeUpload";
 
 const TicketCard = (props) => {
+    const [checked, setChecked] = useState(props.checked);
+
+    useEffect(() => {
+        setChecked(props.checked);
+    }, [props.checked]);
+
     return (
         <div className="ticket-card">
             <div className="ticket-card-header">
-                <Checkbox defaultChecked={props.checked} onChange={props.setChecked} /> <p className="name m-0">{props.name} Ticket</p>
+                <Checkbox defaultChecked={checked} onChange={props.setChecked} /> <p className="name m-0">{props.name} Ticket</p>
             </div>
-            <Row className={props.checked ? "" : "locked"} style={{ "--bs-gutter-x": "2rem" }}>
+            <Row className={checked ? "" : "locked"} style={{ "--bs-gutter-x": "2rem" }}>
                 <Col md={5}>
                     <ImageUpload image={props.image} setImage={props.setImage} width="400" height="400" />
                 </Col>

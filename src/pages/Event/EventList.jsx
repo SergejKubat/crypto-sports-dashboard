@@ -34,9 +34,10 @@ const EventListPage = () => {
         <div>
             <h1 className="m-0">Events</h1>
             <p className="my-4">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum vitae velit placeat odio accusamus! Quae, similique nihil.
-                Voluptates voluptatum quis quisquam inventore! Ipsum itaque omnis vel placeat cum incidunt fugit nobis accusamus, ducimus
-                quasi ut laborum fuga officia quo, nisi, eos qui saepe? Adipisci, animi alias enim aspernatur laborum iusto!
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum mollitia itaque quasi beatae. Unde dolorum autem iure
+                omnis, cumque impedit reiciendis libero, perspiciatis necessitatibus eveniet illo praesentium distinctio accusamus
+                asperiores. Obcaecati necessitatibus inventore exercitationem at pariatur perspiciatis fugit soluta quia odio porro hic
+                dolores laboriosam laudantium, aliquid id.
             </p>
             <Button text="Create New Event" onClick={() => navigate("/events/create")} />
             <div className="list">

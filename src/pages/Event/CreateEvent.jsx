@@ -174,14 +174,13 @@ const CreateEventPage = () => {
                 location: location,
                 isQRExternal: QRCodeType.value === "External",
                 image: imageURL,
-                tickets: tickets
+                tickets: tickets,
+                status: type
             };
 
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/events`, data, { withCredentials: true });
 
             const event = response.data;
-
-            console.log("event: ", event);
 
             await axios.post(`${import.meta.env.VITE_API_URL}/events/${event._id}/qr-codes`, QRCodes, { withCredentials: true });
 
@@ -321,7 +320,7 @@ const CreateEventPage = () => {
             </Row>
             <div className="d-flex justify-content-end mt-5" style={{ gap: "1.5rem" }}>
                 <Button text="SAVE DRAFT" onClick={() => saveEvent("draft")} />
-                <Button text="SEND FOR APPROVAL" type="success" onClick={() => saveEvent("for-approval")} />
+                <Button text="SEND FOR APPROVAL" type="success" onClick={() => saveEvent("under-approval")} />
             </div>
         </div>
     );

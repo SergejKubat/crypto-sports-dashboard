@@ -5,7 +5,7 @@ import { BsImageFill } from "react-icons/bs";
 import { IMAGE_ACCEPTED_MIME_TYPES, TWO_MEGABYTES } from "../../data/constants";
 
 const ImageUpload = (props) => {
-    const [image, setImage] = useState(props.image);
+    const [image, setImage] = useState();
     const [error, setError] = useState("");
 
     const filePicker = useRef();
@@ -44,6 +44,8 @@ const ImageUpload = (props) => {
             const url = e.target.result;
 
             setImage(url);
+
+            props.setImage(url);
         });
 
         fileReader.readAsDataURL(file);
@@ -56,8 +58,8 @@ const ImageUpload = (props) => {
     };
 
     useEffect(() => {
-        props.setImage(image);
-    }, [image]);
+        setImage(props.image);
+    }, [props.image]);
 
     return (
         <div className="image-upload" style={props.style}>
@@ -68,7 +70,7 @@ const ImageUpload = (props) => {
             {image ? (
                 <React.Fragment>
                     <img src={image} alt="Upload Image" className="image-upload-preview" />
-                    <p className="image-upload-other" onClick={onFileInputClick}>
+                    <p className="image-upload-other mb-0" onClick={onFileInputClick}>
                         Upload Other Image
                     </p>
                 </React.Fragment>
