@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
 import EditEvent from "./EditEvent";
+import EventDetails from "./EventDetails";
 
 import { formatDate } from "../../utils/date";
 
@@ -48,14 +49,14 @@ const EventPage = () => {
                 <Tabs>
                     <TabList>
                         <Tab>Edit</Tab>
-                        <Tab>Info</Tab>
+                        <Tab>Details</Tab>
                     </TabList>
 
                     <TabPanel>
                         <EditEvent event={event} />
                     </TabPanel>
                     <TabPanel>
-                        <h2>Any content 2</h2>
+                        <EventDetails event={event} />
                     </TabPanel>
                 </Tabs>
             ) : (

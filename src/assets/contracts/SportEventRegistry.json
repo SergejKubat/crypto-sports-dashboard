@@ -163,7 +163,7 @@
             "stateMutability": "view",
             "payable": false,
             "inputs": [{ "type": "address", "name": "sportEventAddress" }],
-            "outputs": [{ "type": "uint256" }]
+            "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }]
         },
         {
             "type": "function",
@@ -187,7 +187,7 @@
                 { "type": "address", "name": "sportEventAddress" },
                 { "type": "uint256[]", "name": "ticketTypes" }
             ],
-            "outputs": [{ "type": "uint256[]" }]
+            "outputs": [{ "type": "uint256[]", "internalType": "uint256[]" }]
         },
         {
             "type": "function",

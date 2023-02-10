@@ -13,6 +13,10 @@
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 
+    &:disabled {
+        opacity: 0.5;
+    }
+
     &.default {
         background: $color-indigo;
 
