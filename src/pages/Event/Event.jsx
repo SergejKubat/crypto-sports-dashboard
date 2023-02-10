@@ -33,7 +33,7 @@ const EventPage = () => {
 
     return event ? (
         <div>
-            <h1 className="mb-3">{event.name}</h1>
+            <h1 className="mb-4">{event.name}</h1>
             <div className="mb-5">
                 <p>
                     Status:{" "}
