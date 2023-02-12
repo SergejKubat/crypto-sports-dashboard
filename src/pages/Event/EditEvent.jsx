@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import axios from "axios";
+import Web3 from "web3";
 import { useNavigate } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
@@ -16,6 +17,10 @@ import { uploadFile } from "../../utils/file";
 
 import { categories } from "../../data/category";
 import { QRCodeTypes } from "../../data/QRCode";
+
+import { UserContext } from "../../context/UserContext";
+
+import SportEventRegistry from "../../assets/contracts/SportEventRegistry.json";
 
 const EditEvent = (props) => {
     const [name, setName] = useState(props.event.name);
@@ -57,6 +62,10 @@ const EditEvent = (props) => {
     const [locked, setLocked] = useState(false);
 
     const navigate = useNavigate();
+
+    const { user } = useContext(UserContext);
+
+    const web3 = new Web3(window.ethereum);
 
     const validate = () => {
         if (name.length < 4) return false;
@@ -157,6 +166,60 @@ const EditEvent = (props) => {
         }
     };
 
+    const publishEvent = () => {
+        setLocked(true);
+
+        const baseURI = import.meta.env.VITE_API_URL;
+        const symbol = "CryptoSports";
+        const amounts = [silverAmount, goldAmount, platinumAmount, diamondAmount];
+        const prices = [
+            Web3.utils.toWei(silverPrice.toString()),
+            Web3.utils.toWei(goldPrice.toString()),
+            Web3.utils.toWei(platinumPrice.toString()),
+            Web3.utils.toWei(diamondPrice.toString())
+        ];
+        const organizerAddress = props.event.organizerWallet;
+        const endTimestamp = Math.floor(startDate.getTime() / 1000);
+
+        // create contract instance
+        const sportEventRegistry = new web3.eth.Contract(SportEventRegistry.abi, SportEventRegistry.address);
+
+        // sign tx and call contract method
+        sportEventRegistry.methods
+            .createSportEvent(baseURI, name, symbol, amounts, prices, organizerAddress, endTimestamp)
+            .send({ from: window.ethereum.selectedAddress })
+            .then(() => {
+                navigate("/events");
+            })
+            .catch((error) => {
+                setLocked(false);
+
+                console.log(error);
+            });
+    };
+
+    const cancelEvent = () => {
+        setLocked(true);
+
+        const sportEventAddress = props.event.contractAddress;
+
+        // create contract instance
+        const sportEventRegistry = new web3.eth.Contract(SportEventRegistry.abi, SportEventRegistry.address);
+
+        // sign tx and call contract method
+        sportEventRegistry.methods
+            .pauseEvent(sportEventAddress)
+            .send({ from: window.ethereum.selectedAddress })
+            .then(() => {
+                navigate("/events");
+            })
+            .catch((error) => {
+                setLocked(false);
+
+                console.log(error);
+            });
+    };
+
     useEffect(() => {
         const tickets = props.event.tickets;
 
@@ -192,8 +255,17 @@ const EditEvent = (props) => {
             setDiamondAmount(tickets.Diamond.amount);
         }
 
-        if (props.event.status === "under-approval") {
+        const status = props.event.status;
+
+        if (status === "canceled") {
             setLocked(true);
+            return;
+        }
+
+        if (status === "under-approval") {
+            if (user.role === "organizer") {
+                setLocked(true);
+            }
         }
     }, []);
 
@@ -315,8 +387,21 @@ const EditEvent = (props) => {
                 </Col>
             </Row>
             <div className="d-flex justify-content-end mt-5" style={{ gap: "1.5rem" }}>
-                <Button text="SAVE DRAFT" onClick={() => saveEvent("draft")} />
-                <Button text="SEND FOR APPROVAL" type="success" onClick={() => saveEvent("under-approval")} />
+                {user.role === "organizer" ? (
+                    props.event.status === "published" ? (
+                        <React.Fragment>
+                            <Button text="SAVE DRAFT" onClick={() => saveEvent("draft")} />
+                            <Button text="SEND FOR APPROVAL" type="success" onClick={() => saveEvent("under-approval")} />
+                        </React.Fragment>
+                    ) : null
+                ) : props.event.status === "published" ? (
+                    <Button text="CANCEL" type="danger" style={{ width: "15rem" }} onClick={cancelEvent} />
+                ) : (
+                    <React.Fragment>
+                        <Button text="DECLINE" type="danger" style={{ width: "15rem" }} onClick={() => saveEvent("for-improvement")} />
+                        <Button text="PUBLISH" type="success" style={{ width: "15rem" }} onClick={publishEvent} />
+                    </React.Fragment>
+                )}
             </div>
         </div>
     );

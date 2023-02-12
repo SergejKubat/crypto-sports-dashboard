@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
-import { AiOutlineHome, AiOutlineBarChart, AiOutlineLogout } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineLogout } from "react-icons/ai";
 import { BsCalendarEvent, BsEnvelope } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -63,12 +63,6 @@ const Navigation = () => {
                             <li className="navigation-list-item">
                                 <BsEnvelope />
                                 <span>Invitations</span>
-                            </li>
-                        </NavLink>
-                        <NavLink to="/charts" className={({ isActive }) => (isActive ? "active" : "")}>
-                            <li className="navigation-list-item">
-                                <AiOutlineBarChart />
-                                <span>Charts</span>
                             </li>
                         </NavLink>
                     </React.Fragment>
