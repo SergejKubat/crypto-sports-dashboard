@@ -11,6 +11,7 @@ import DashboardPage from "./pages/Dashboard";
 import EventListPage from "./pages/Event/EventList";
 import CreateEventPage from "./pages/Event/CreateEvent";
 import EventPage from "./pages/Event/Event";
+import UserListPage from "./pages/User/UserList";
 import NotFoundPage from "./pages/NotFound";
 
 import Layout from "./components/Layout/Layout";
@@ -59,6 +60,7 @@ const App = () => {
                             <Route path="/events" element={<EventListPage />} />
                             <Route path="/events/create" element={<CreateEventPage />} />
                             <Route path="/events/:id" element={<EventPage />} />
+                            <Route path="/users" element={<UserListPage />} />
                         </Route>
                         <Route path="*" element={<NotFoundPage />} />
                     </Routes>
