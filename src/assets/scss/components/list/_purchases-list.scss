@@ -45,6 +45,17 @@
                     & .not-used {
                         fill: $color-success;
                     }
+
+                    & .delete {
+                        font-size: 2.4rem;
+                        fill: $color-red;
+                        transition: fill 0.3s ease-in-out;
+                        cursor: pointer;
+
+                        &:hover {
+                            fill: darken($color-red, 10%);
+                        }
+                    }
                 }
             }
         }

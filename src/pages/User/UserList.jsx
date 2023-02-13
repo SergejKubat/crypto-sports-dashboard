@@ -28,7 +28,7 @@ const UserListPage = () => {
             <p className="mt-4" style={{ marginBottom: "5rem" }}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quibusdam commodi culpa! Amet aperiam voluptates itaque
                 excepturi quidem vero ab porro sed nesciunt, nostrum iste facilis eaque fugiat rerum sapiente? Molestias aperiam at ea ipsum
-                velit quidem maxime? Commodi incidunt excepturi labore vitae voluptates rem esse natus voluptate maiores dolorum?
+                velit quidem maxime? Commodi incidunt excepturi labore vitae voluptates rem esse natus voluptate maiores dolorum.
             </p>
             <UserList users={users} />
         </div>
