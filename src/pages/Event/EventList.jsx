@@ -39,7 +39,7 @@ const EventListPage = () => {
                 asperiores. Obcaecati necessitatibus inventore exercitationem at pariatur perspiciatis fugit soluta quia odio porro hic
                 dolores laboriosam laudantium, aliquid id.
             </p>
-            <Button text="Create New Event" onClick={() => navigate("/events/create")} />
+            {user.role === "organizer" ? <Button text="Create New Event" onClick={() => navigate("/events/create")} /> : null}
             <div className="list">
                 <ul className="list-content">
                     {events.map((event) => (
