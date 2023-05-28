@@ -32,7 +32,7 @@ const EventDetails = (props) => {
         // call contract method
         sportEventRegistry.methods
             .getBalance(props.event.contractAddress)
-            .call()
+            .call({ from: window.ethereum.selectedAddress })
             .then((balance) => {
                 setBalance(parseFloat(Web3.utils.fromWei(balance, "ether")));
             })
